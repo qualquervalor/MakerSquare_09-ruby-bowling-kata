@@ -5,6 +5,7 @@ require_relative '../bowling_game'
 
 describe BowlingGame do 
 	let(:game){BowlingGame.new}
+
 	describe '.initialize' do
 		it 'sets @rolls to an empty array' do
 	
@@ -37,5 +38,16 @@ describe BowlingGame do
 				expect(game.score).to eq (20)
 			end
 		end
-	end
+
+		context 'when a strike is thrown' do
+			it 'record the frame score as 10 plus the next two rolls' do
+				1.times { game.roll(10) }
+				2.times { game.roll(5) }
+				16.times { game.roll(0) }
+
+				expect(game.score).to eq (30)
+			end
+		end
+	end	
+
 end
